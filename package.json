@@ -1,0 +1,47 @@
+{
+    "name": "team-store",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc --noEmit && vite build",
+        "preview": "vite preview",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "test": "vitest --passWithNoTests",
+        "test:run": "vitest run --passWithNoTests",
+        "prepare": "husky"
+    },
+    "lint-staged": {
+        "*.{js,ts}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.css": [
+            "prettier --write"
+        ],
+        "*.{json,html,md}": [
+            "prettier --write"
+        ]
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "eslint": "^10.15.0",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-import-resolver-typescript": "^4.4.5",
+        "eslint-plugin-import-x": "^4.18.1",
+        "globals": "^17.14.0",
+        "husky": "^9.1.7",
+        "lint-staged": "^17.6.1",
+        "prettier": "^3.10.1",
+        "stylelint": "^17.16.0",
+        "stylelint-config-standard": "^40.0.0",
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.73.0",
+        "vite": "^8.3.6",
+        "vitest": "^5.1.1"
+    }
+}
