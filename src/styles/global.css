@@ -1,0 +1,11 @@
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-page);
+}
+
+#app {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding: 0 20px;
+}
