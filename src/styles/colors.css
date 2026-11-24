@@ -4,4 +4,8 @@
     --bg-footer: #2b2320;
     --font-black: #000000;
     --font-wite: #ffffff;
+
+    --slider-dot: #ffffff;
+    --slider-dot-active: #9cb8eb;
+    --slider-dot-border: #000000;
 }
