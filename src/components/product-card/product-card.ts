@@ -32,12 +32,24 @@ function renderProductCard({ title, image, available, price, href, isNew }: Prod
     productPrice.classList.add('product-card__price');
     productPrice.textContent = `${price} BYN`;
 
-    const detailsLink = document.createElement('a');
-    detailsLink.classList.add('product-card__link');
-    detailsLink.href = href;
-    detailsLink.textContent = 'Подробнее';
+    const buttons = document.createElement('div');
+    buttons.classList.add('product-card__buttons');
 
-    productCard.append(productImage, productTitle, productAvailability, productPrice, detailsLink);
+    const detailsButton = document.createElement('button');
+    detailsButton.classList.add('product-card__link');
+    detailsButton.type = 'button';
+    detailsButton.textContent = 'Подробнее';
+    detailsButton.dataset.href = href;
+
+    const cartButton = document.createElement('button');
+    cartButton.classList.add('product-card__cart');
+    cartButton.type = 'button';
+    cartButton.textContent = '🛒';
+    cartButton.setAttribute('aria-label', 'Добавить в корзину');
+
+    buttons.append(detailsButton, cartButton);
+
+    productCard.append(productImage, productTitle, productAvailability, productPrice, buttons);
 
     return productCard;
 }
