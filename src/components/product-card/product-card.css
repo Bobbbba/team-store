@@ -74,6 +74,11 @@
     animation: button-shake 0.5s ease-in-out infinite alternate;
 }
 
+.product-card__price--unavailable {
+    color: var(--font-disabled);
+    text-decoration: line-through;
+}
+
 @keyframes button-shake {
     from {
         transform: rotate(-2deg);

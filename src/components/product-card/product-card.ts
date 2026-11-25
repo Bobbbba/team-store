@@ -31,6 +31,11 @@ function renderProductCard({ id, title, image, available, price, href, isNew }: 
 
     const productPrice = document.createElement('p');
     productPrice.classList.add('product-card__price');
+
+    if (!available) {
+        productPrice.classList.add('product-card__price--unavailable');
+    }
+
     productPrice.textContent = `${price} BYN`;
 
     const buttons = document.createElement('div');
