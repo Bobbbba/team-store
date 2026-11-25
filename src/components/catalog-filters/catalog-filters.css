@@ -1,0 +1,5 @@
+.catalog__filters {
+    width: 100%;
+    min-width: 400px;
+    background-color: var(--bg-content);
+}
