@@ -1,7 +1,6 @@
 .product-card {
     position: relative;
     display: flex;
-    flex: 0 0 calc(25% - 15px);
     flex-direction: column;
     gap: 12px;
     min-width: 0;
