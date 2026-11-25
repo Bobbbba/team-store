@@ -1,9 +1,10 @@
-import { ProductItem } from '../../types/product';
+import { ProductBase } from '../../types/product';
 import './product-card.css';
 
-function renderProductCard({ title, image, available, price, href, isNew }: ProductItem) {
+function renderProductCard({ id, title, image, available, price, href, isNew }: ProductBase) {
     const productCard = document.createElement('article');
     productCard.classList.add('product-card');
+    productCard.dataset.id = String(id);
 
     if (isNew) {
         const newBadge = document.createElement('span');
@@ -39,12 +40,14 @@ function renderProductCard({ title, image, available, price, href, isNew }: Prod
     detailsButton.classList.add('product-card__link');
     detailsButton.type = 'button';
     detailsButton.textContent = 'Подробнее';
+    detailsButton.dataset.id = String(id);
     detailsButton.dataset.href = href;
 
     const cartButton = document.createElement('button');
     cartButton.classList.add('product-card__cart');
     cartButton.type = 'button';
     cartButton.textContent = '🛒';
+    cartButton.dataset.id = String(id);
     cartButton.setAttribute('aria-label', 'Добавить в корзину');
 
     buttons.append(detailsButton, cartButton);

@@ -1,15 +1,31 @@
 .popular {
     display: flex;
     width: 100%;
-    padding: 40px 0;
     flex-direction: column;
     align-items: flex-start;
     background-color: var(--bg-content);
-    padding: 40px 20px;
+    padding: 0 20px;
+}
+
+.popular__header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.popular__button {
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.popular__button:hover {
+    transform: scale(1.03);
 }
 
 .popular__title {
-    margin: 0 0 30px;
     font-size: 28px;
     text-align: center;
 }
