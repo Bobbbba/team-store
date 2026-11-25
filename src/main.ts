@@ -3,6 +3,7 @@ import './styles/global.css';
 import './styles/colors.css';
 import { generationHeader } from './components/header/header';
 import { generationFooter } from './components/footer/footer';
+import { initCartUI } from './components/cart/cartUI';
 
 const app = document.querySelector<HTMLDivElement>('#app');
 
@@ -11,3 +12,4 @@ if (!app) {
 }
 
 app.append(generationHeader(), generationFooter());
+initCartUI();

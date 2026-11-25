@@ -67,7 +67,7 @@ export function getTotalPrice(): number {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);
 }
 
-export function getTotalCoutn(): number {
+export function getTotalCount(): number {
     return items.reduce((count, item) => count + item.quantity, 0);
 }
 

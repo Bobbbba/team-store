@@ -1,0 +1,264 @@
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.cart-overlay:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 2. Сама панель корзины */
+.cart-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 420px; /* Ширина как на макете */
+    height: 100vh;
+    background-color: #fff;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    /* Сдвигаем панель вправо за пределы экрана */
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Класс .open добавляется через JS, чтобы выехать */
+.cart-panel.open {
+    transform: translateX(0);
+}
+
+/* 3. Шапка корзины */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-header h2 {
+    font-size: 20px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-header__count {
+    font-size: 14px;
+    color: #888;
+    font-weight: normal;
+}
+
+.cart-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart-header__clear {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.cart-header__close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    line-height: 1;
+}
+
+/* 4. Список товаров (скроллится) */
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.cart-empty {
+    text-align: center;
+    color: #888;
+    margin-top: 50px;
+}
+
+/* Карточка товара внутри корзины */
+.cart-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.cart-item__img {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.cart-item__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-item__title {
+    font-size: 14px;
+    margin: 0 0 5px 0;
+    font-weight: normal;
+}
+
+.cart-item__price {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0 0 5px 0;
+}
+
+.cart-item__old-price {
+    font-size: 12px;
+    color: #aaa;
+    text-decoration: line-through;
+    margin-left: 10px;
+}
+
+.cart-item__favorite {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+/* Кнопки + и - */
+.cart-item__controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.cart-item__controls button {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-item__remove {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    font-size: 18px;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-left: auto;
+}
+
+/* 5. Подвал корзины (итоги) */
+.cart-footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background: #fff;
+}
+
+.cart-footer__summary {
+    margin-bottom: 20px;
+}
+
+.cart-footer__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.cart-footer__total {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cart-footer__row--old {
+    justify-content: flex-end;
+    color: #aaa;
+    text-decoration: line-through;
+    font-size: 14px;
+}
+
+.cart-footer__row--savings {
+    color: #888;
+    font-size: 13px;
+    justify-content: flex-start;
+}
+
+.cart-footer__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-checkout {
+    width: 100%;
+    background-color: #2b2b2b;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.btn-checkout:hover {
+    background-color: #000;
+}
+
+.cart-footer__link {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.cart-footer__link:hover {
+    text-decoration: underline;
+}
+
+.cart-footer__payments {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #666;
+    font-weight: bold;
+}
