@@ -16,6 +16,14 @@ export interface ProductBase {
     isPopular: boolean;
 }
 
+export interface ProductFilters {
+    gender?: ProductGender;
+    category?: ProductCategory;
+    isPopular?: boolean;
+    isNew?: boolean;
+    available?: boolean;
+}
+
 export const products: ProductBase[] = [
     {
         id: 1,

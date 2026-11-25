@@ -1,5 +1,6 @@
 import { products } from '../../types/product';
-import { renderProductCard } from '../product-card/product-card';
+import { renderCatalog } from '../catalog/catalog';
+import { renderProductsList } from '../product-list/product-list';
 import './popular.css';
 
 function renderPopular() {
@@ -13,23 +14,23 @@ function renderPopular() {
     title.classList.add('popular__title');
     title.textContent = 'Популярное';
 
-    const allProductsButton = document.createElement('button');
+    const allProductsButton = document.createElement('a');
     allProductsButton.classList.add('popular__button');
     allProductsButton.type = 'button';
     allProductsButton.textContent = 'Все товары →';
+    allProductsButton.href = 'all';
 
     titleBlock.append(title, allProductsButton);
 
-    const productsList = document.createElement('div');
+    const productsList = renderProductsList(products, { isPopular: true });
     productsList.classList.add('popular__list');
 
-    products
-        .filter((product) => product.isPopular)
-        .forEach((product) => {
-            productsList.append(renderProductCard(product));
-        });
-
     popularSection.append(titleBlock, productsList);
+
+    allProductsButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        renderCatalog();
+    });
 
     return popularSection;
 }
