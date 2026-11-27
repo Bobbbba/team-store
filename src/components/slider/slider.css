@@ -1,0 +1,35 @@
+.slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider__image {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.slider__dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    display: flex;
+    gap: 10px;
+    transform: translateX(-50%);
+}
+
+.slider__dot {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    background-color: var(--slider-dot);
+    border: 1px solid var(--slider-dot-border);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.slider__dot--active {
+    background-color: var(--slider-dot-active);
+}

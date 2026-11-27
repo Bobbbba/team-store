@@ -5,7 +5,6 @@ footer {
     width: 100%;
     max-width: 1440px;
     min-height: 90px;
-    margin: 0 10px;
     padding: 20px 40px;
 
     background-color: var(--bg-footer);

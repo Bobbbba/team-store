@@ -4,4 +4,13 @@
     --bg-footer: #2b2320;
     --font-black: #000000;
     --font-wite: #ffffff;
+    --font-disabled: #999999;
+
+    --slider-dot: #ffffff;
+    --slider-dot-active: #9cb8eb;
+    --slider-dot-border: #000000;
+
+    --badge-new: #e53935;
+    --status-available: #2e8b57;
+    --status-unavailable: #e53935;
 }

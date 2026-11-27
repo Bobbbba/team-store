@@ -1,0 +1,37 @@
+.popular {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--bg-content);
+    padding: 0 20px 20px;
+}
+
+.popular__header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.popular__button {
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.popular__button:hover {
+    transform: scale(1.03);
+}
+
+.popular__title {
+    font-size: 28px;
+    text-align: center;
+}
+
+.popular__list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
