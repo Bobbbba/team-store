@@ -21,7 +21,13 @@ function renderCatalog() {
     const productsContainer = renderProductsList(products);
     productsContainer.classList.add('catalog__products');
 
-    catalog.append(renderCatalogFilters(), productsContainer);
+    const catalogFilters = renderCatalogFilters((gender) => {
+        const filteredProducts = gender ? products.filter((product) => product.gender === gender) : products;
+
+        productsContainer.replaceChildren(...renderProductsList(filteredProducts).children);
+    });
+
+    catalog.append(catalogFilters, productsContainer);
 
     app.append(generationHeader(), renderSlider(), catalog, generationFooter());
 }
