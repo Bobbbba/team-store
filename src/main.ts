@@ -11,5 +11,4 @@ if (!app) {
     throw new Error('App element not found');
 }
 
-app.append(generationHeader(), generationFooter());
-initCartUI();
+app.append(generationHeader(), generationFooter(), initCartUI());

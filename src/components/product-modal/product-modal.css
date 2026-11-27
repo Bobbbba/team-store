@@ -1,0 +1,135 @@
+.product-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.product-modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.product-modal {
+    background: #fff;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    border-radius: 12px;
+    position: relative;
+    overflow-y: auto;
+    padding: 30px;
+}
+
+.product-modal__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+}
+
+.product-modal__content {
+    display: flex;
+    gap: 40px;
+}
+
+@media (max-width: 768px) {
+    .product-modal__content {
+        flex-direction: column;
+    }
+}
+
+/* Галерея */
+.product-modal__gallery {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product-modal__main-img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-modal__thumbnails {
+    display: flex;
+    gap: 10px;
+}
+
+.product-modal__thumb {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.product-modal__thumb:hover {
+    border-color: #2b2b2b;
+}
+
+/* Информация */
+.product-modal__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-modal__title {
+    font-size: 28px;
+    margin: 0 0 15px 0;
+}
+
+.product-modal__prices {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.product-modal__price {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.product-modal__old-price {
+    font-size: 18px;
+    color: #aaa;
+    text-decoration: line-through;
+}
+
+.product-modal__desc {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.product-modal__btn {
+    margin-top: auto;
+    background: #2b2b2b;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.product-modal__btn:hover {
+    background: #000;
+}

@@ -38,7 +38,6 @@ export function initCartUI() {
     if (!cartRoot) {
         cartRoot = document.createElement('div');
         cartRoot.id = 'cart-root';
-        document.body.append(cartRoot);
     }
 
     cartRoot.innerHTML = `
@@ -107,23 +106,41 @@ export function initCartUI() {
         }
     });
 
-    const headerCartBtn = document.querySelector('.header__cart');
+    document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
 
-    if (headerCartBtn) {
-        headerCartBtn.addEventListener('click', (e) => {
-            e.preventDefault();
+        // Ищем ближайший элемент с классом header__cart (или header__cart-icon)
+        const cartBtn = target.closest('.header__cart');
+
+        if (cartBtn) {
+            e.preventDefault(); // Отменяем переход на страницу /cart
 
             const panel = document.getElementById('cart-panel');
             const overlay = document.getElementById('cart-overlay');
+            const closeBtn = document.getElementById('close-cart-btn');
 
             if (panel && overlay) {
                 panel.classList.add('open');
                 overlay.classList.remove('hidden');
-
-                renderCartItems();
+                renderCartItems(); // Обновляем данные
             }
-        });
-    } else {
-        console.warn('Иконка корзины не найдена! Проверьте класс .header__cart');
-    }
+            const closeCart = () => {
+                panel?.classList.remove('open');
+                overlay?.classList.add('hidden');
+            };
+
+            // Вешаем события на крестик и фон
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeCart);
+            } else {
+                console.warn('Кнопка закрытия (крестик) не найдена!');
+            }
+
+            if (overlay) {
+                overlay.addEventListener('click', closeCart);
+            }
+        }
+    });
+
+    return cartRoot;
 }

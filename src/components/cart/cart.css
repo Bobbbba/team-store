@@ -18,30 +18,27 @@
     visibility: visible;
 }
 
-/* 2. Сама панель корзины */
 .cart-panel {
     position: fixed;
     top: 0;
     right: 0;
     width: 100%;
-    max-width: 420px; /* Ширина как на макете */
+    max-width: 420px;
     height: 100vh;
     background-color: #fff;
     z-index: 1001;
     display: flex;
     flex-direction: column;
-    /* Сдвигаем панель вправо за пределы экрана */
+
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
     box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Класс .open добавляется через JS, чтобы выехать */
 .cart-panel.open {
     transform: translateX(0);
 }
 
-/* 3. Шапка корзины */
 .cart-header {
     display: flex;
     justify-content: space-between;
@@ -88,7 +85,6 @@
     line-height: 1;
 }
 
-/* 4. Список товаров (скроллится) */
 .cart-items {
     flex: 1;
     overflow-y: auto;
@@ -101,7 +97,6 @@
     margin-top: 50px;
 }
 
-/* Карточка товара внутри корзины */
 .cart-item {
     display: flex;
     gap: 15px;
@@ -153,7 +148,6 @@
     margin-bottom: 15px;
 }
 
-/* Кнопки + и - */
 .cart-item__controls {
     display: flex;
     align-items: center;
@@ -183,7 +177,6 @@
     margin-left: auto;
 }
 
-/* 5. Подвал корзины (итоги) */
 .cart-footer {
     padding: 20px;
     border-top: 1px solid #eee;
