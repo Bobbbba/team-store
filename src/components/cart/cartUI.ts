@@ -25,7 +25,6 @@ export function renderCartItems() {
       <div class="cart-item__info">
         <h3>${item.title}</h3>
         <p>${item.price} BYN</p>
-        <!-- ... остальные элементы: кнопки +, -, удаления ... -->
       </div>
     </div>
   `
@@ -34,18 +33,13 @@ export function renderCartItems() {
 }
 
 export function initCartUI() {
-    let cartRoot = document.getElementById('cart-root');
-    if (!cartRoot) {
-        cartRoot = document.createElement('div');
-        cartRoot.id = 'cart-root';
-        document.body.append(cartRoot);
-    }
+    // 1. Создаем корзину в памяти
+    const cartRoot = document.createElement('div');
+    cartRoot.id = 'cart-root';
 
     cartRoot.innerHTML = `
     <div id="cart-overlay" class="cart-overlay hidden"></div>
     <aside id="cart-panel" class="cart-panel">
-      
-      <!-- Шапка корзины -->
       <div class="cart-header">
         <h2>Ваша корзина <span id="cart-count" class="cart-header__count">0 товаров</span></h2>
         <div class="cart-header__actions">
@@ -53,11 +47,7 @@ export function initCartUI() {
           <button id="close-cart-btn" class="cart-header__close">✕</button>
         </div>
       </div>
-
-      <!-- Список товаров -->
       <div id="cart-items-container" class="cart-items"></div>
-
-      <!-- Футер корзины -->
       <div class="cart-footer">
         <div class="cart-footer__summary">
           <div class="cart-footer__row">
@@ -71,33 +61,31 @@ export function initCartUI() {
             <span>Экономия: <span id="cart-savings">0 BYN</span></span>
           </div>
         </div>
-        
         <div class="cart-footer__buttons">
           <button class="btn-checkout">Оформить заказ</button>
           <a href="#" class="cart-footer__link">Перейти в корзину</a>
         </div>
         <div class="cart-footer__payments">
-          <!-- Здесь можно вставить SVG или img с логотипами Visa/Mastercard -->
           <span>VISA</span>
           <span>Mastercard</span>
         </div>
       </div>
-
     </aside>
   `;
 
-    const panel = document.getElementById('cart-panel');
-    const overlay = document.getElementById('cart-overlay');
-    const closeBtn = document.getElementById('close-cart-btn');
-    const clearBtn = document.getElementById('clear-cart-btn');
+    // 2. Находим элементы ВНУТРИ cartRoot (пока он еще не в документе)
+    const panel = cartRoot.querySelector('#cart-panel') as HTMLElement;
+    const overlay = cartRoot.querySelector('#cart-overlay') as HTMLElement;
+    const closeBtn = cartRoot.querySelector('#close-cart-btn') as HTMLElement;
+    const clearBtn = cartRoot.querySelector('#clear-cart-btn') as HTMLElement;
 
+    // 3. Вешаем события
     const closeCart = () => {
         panel?.classList.remove('open');
         overlay?.classList.add('hidden');
     };
 
     closeBtn?.addEventListener('click', closeCart);
-
     overlay?.addEventListener('click', closeCart);
 
     clearBtn?.addEventListener('click', () => {
@@ -107,23 +95,25 @@ export function initCartUI() {
         }
     });
 
-    const headerCartBtn = document.querySelector('.header__cart');
-
-    if (headerCartBtn) {
-        headerCartBtn.addEventListener('click', (e) => {
+    // 4. Делегирование для открытия корзины
+    document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        if (target.closest('.header__cart')) {
             e.preventDefault();
 
-            const panel = document.getElementById('cart-panel');
-            const overlay = document.getElementById('cart-overlay');
+            // ВАЖНО: используем querySelector от document здесь,
+            // так как cartRoot уже будет вставлен в main.ts
+            const currentPanel = document.getElementById('cart-panel');
+            const currentOverlay = document.getElementById('cart-overlay');
 
-            if (panel && overlay) {
-                panel.classList.add('open');
-                overlay.classList.remove('hidden');
+            currentPanel?.classList.add('open');
+            currentOverlay?.classList.remove('hidden');
+            renderCartItems();
+        }
+    });
 
-                renderCartItems();
-            }
-        });
-    } else {
-        console.warn('Иконка корзины не найдена! Проверьте класс .header__cart');
-    }
+    // Первичный рендер
+    renderCartItems();
+
+    return cartRoot;
 }
